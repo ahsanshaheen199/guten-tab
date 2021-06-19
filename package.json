@@ -1,0 +1,17 @@
+{
+  "name": "guten-tailwind-tab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "wp-scripts start src/blocks.js --output-path=dist",
+    "build": "wp-scripts build src/blocks.js --output-path=dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^16.1.2"
+  }
+}
