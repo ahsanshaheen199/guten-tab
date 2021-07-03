@@ -1,6 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import { v4 as uuid } from 'uuid';
 import Edit from './edit';
+import Save from './Save';
+import './index.css';
 
 registerBlockType('gtt/guten-tailwind-tab', {
 	apiVersion: 2,
@@ -11,16 +14,17 @@ registerBlockType('gtt/guten-tailwind-tab', {
 			default: {
 				options: [
 					{
-						name: 'tab1',
+						key: uuid(),
 						title: 'Tab Title',
 						tabContent: 'Tab Content',
 					},
 				],
 			},
 		},
+		activeColor: {
+			type: 'string',
+		},
 	},
 	edit: Edit,
-	save(props) {
-		return <h2>Hello from save</h2>;
-	},
+	save: Save,
 });

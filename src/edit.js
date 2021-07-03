@@ -1,9 +1,9 @@
 import {
-	TabPanel,
 	Button,
 	PanelBody,
 	TextControl,
 	TextareaControl,
+	ColorPicker,
 } from '@wordpress/components';
 import {
 	InspectorControls,
@@ -12,18 +12,18 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { v4 as uuid } from 'uuid';
+import TailwindTabs from './components/TailwindTabs';
 
 const Edit = (props) => {
 	const { attributes, setAttributes } = props;
 	const { tabs } = attributes;
-	console.log(tabs);
 
 	const setTabDetails = (tab) => {
 		setAttributes({
 			tabs: {
 				options: [
 					...tabs.options.map((t) => {
-						return tab.name === t.name ? tab : t;
+						return tab.key === t.key ? tab : t;
 					}),
 				],
 			},
@@ -36,7 +36,7 @@ const Edit = (props) => {
 				options: [
 					...tabs.options,
 					{
-						name: uuid(),
+						key: uuid(),
 						title: 'Tab Title',
 						tabContent: 'Tab Content',
 					},
@@ -46,11 +46,15 @@ const Edit = (props) => {
 	};
 
 	const removeTab = (tabID) => {
+		if (tabs.options.length === 1) {
+			alert('One item must be there');
+			return;
+		}
 		setAttributes({
 			tabs: {
 				options: [
 					...tabs.options.filter((t) => {
-						return t.name !== tabID;
+						return t.key !== tabID;
 					}),
 				],
 			},
@@ -61,7 +65,7 @@ const Edit = (props) => {
 		<>
 			<div {...useBlockProps()}>
 				<InspectorControls>
-					<PanelBody title='My Block Settings' initialOpen={true}>
+					<PanelBody title={__('Content')} initialOpen={true}>
 						{tabs.options.map((tab) => {
 							return (
 								<PanelBody
@@ -90,26 +94,33 @@ const Edit = (props) => {
 
 									<Button
 										className='button is-destructive'
-										onClick={() => removeTab(tab.name)}>
+										onClick={() => removeTab(tab.key)}>
 										{__('Remove Tab')}
 									</Button>
 								</PanelBody>
 							);
 						})}
 
-						<Button
-							className='button is-primary'
-							onClick={addNewTab}>
-							{__('Add New Tab')}
-						</Button>
+						<div style={{ textAlign: 'center', marginTop: '10px' }}>
+							<Button
+								className='button is-primary'
+								onClick={addNewTab}>
+								{__('Add New Tab')}
+							</Button>
+						</div>
+					</PanelBody>
+					<PanelBody title={__('Color')} initialOpen={false}>
+						<ColorPicker
+							color={props.attributes.activeColor}
+							onChangeComplete={(value) =>
+								setAttributes({
+									activeColor: value,
+								})
+							}
+						/>
 					</PanelBody>
 				</InspectorControls>
-				<TabPanel
-					className='guten-tab-panel'
-					activeClass='active-tab'
-					tabs={[...tabs.options]}>
-					{(tab) => <div>{tab.tabContent}</div>}
-				</TabPanel>
+				<TailwindTabs {...attributes} />
 			</div>
 		</>
 	);

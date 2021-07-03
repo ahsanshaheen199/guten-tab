@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.guten-tab-link.is-active {
+	@apply text-blue-700;
+	@apply border-b-2;
+	@apply border-blue-700;
+	@apply border-solid;
+}
+
+.guten-tab-link:hover {
+	@apply text-blue-700;
+}
+
+.guten-tab-pane {
+	@apply hidden;
+}
+
+.guten-tab-pane.is-active {
+	@apply block;
+}
