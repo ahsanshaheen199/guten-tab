@@ -3,4 +3,5 @@
 .env
 .DS_Store
 composer.phar
+.idea
 

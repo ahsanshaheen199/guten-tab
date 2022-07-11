@@ -1,50 +1,71 @@
 <?php
-/*
-Plugin Name: Guten Tailwind Tab
-Description: Gutenberg Tailwind Tab
-Author: Ahsan Shaheen
-Version: 1.0
-*/
+/**
+ * Plugin Name:     Guten Tailwind Tab
+ * Plugin URI:      https://github.com/ahsanshaheen199/guten-tailwind-tab
+ * Description:     This is a tab block plugin.
+ * Author:          Ahsan Habib Shaheen
+ * Author URI:      https://profiles.wordpress.org/ahsan03/
+ * Text Domain:     gtt
+ * Domain Path:     /languages
+ * Version:         1.1.0
+ *
+ * @package         Guten_Tailwind_Tab
+ */
 
-use GTT\Includes\Scripts;
+defined( 'ABSPATH' ) || exit;
 
-final class Guten_Tailwind_Tab
-{
-    private static $instance = null;
+/**
+ * Guten Tailwind Tab Class.
+ */
+final class Guten_Tailwind_Tab {
+	/**
+	 * Plugin Version
+	 *
+	 * @var string
+	 */
+	private $version = '1.1.0';
 
-    private function __construct()
-    {
-    }
+	/**
+	 * Initialize Guten_Tailwind_Tab class
+	 *
+	 * @return Guten_Tailwind_Tab
+	 */
+	public static function instance() {
+		static $instance = false;
 
-    public static function instance()
-    {
-        if (!isset(self::$instance)) {
-            self::$instance = new self();
-            self::$instance->define_constants();
-            self::$instance->includes();
-            self::$instance->dependency_class_instance();
-        }
+		if ( ! $instance ) {
+			$instance = new self();
+		}
 
-        return self::$instance;
-    }
+		return $instance;
+	}
 
-    public function dependency_class_instance()
-    {
-        Scripts::instance();
-    }
+	/**
+	 * Construtor
+	 */
+	public function __construct() {
+		add_action( 'init', array( $this, 'register_block_types_init' ) );
+		add_action( 'init', array( $this, 'load_textdomain' ) );
+	}
 
-    public function includes()
-    {
-        include GTT_PLUGIN_FILE . 'vendor/autoload.php';
-    }
+	/**
+	 * Register Block
+	 */
+	public function register_block_types_init() {
+		register_block_type( __DIR__ . '/build/tabs' );
+		register_block_type( __DIR__ . '/build/tab' );
+	}
 
-    public function define_constants()
-    {
-        define('GTT_PLUGIN_FILE', plugin_dir_path(__FILE__));
-        define('GTT_PLUGIN_DIST_FILE_PATH', plugin_dir_path(__FILE__) . 'dist');
-        define('GTT_PLUGIN_DIST_FILE_URL', plugin_dir_url(__FILE__) . 'dist');
-        define('GTT_PLUGIN_SRC_FILE_URL', plugin_dir_url(__FILE__) . 'src');
-    }
+	/**
+	 * Load all translations for our plugin from the MO file.
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'gtt', false, basename( __DIR__ ) . '/languages' );
+
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( 'guten-tailwind-tab', 'gtt', plugin_dir_path( __FILE__ ) . 'languages' );
+		}
+	}
 }
 
 function guten_tailwind_tab()

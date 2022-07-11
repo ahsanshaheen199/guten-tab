@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "ahsan03/tabs",
+  "version": "1.1.0",
+  "title": "Tabs",
+  "category": "design",
+  "description": "Tab Block",
+  "textdomain": "gtt",
+  "example": {
+    "attributes": {}
+  },
+  "attributes": {
+    "tabs": {
+      "type": "array",
+      "default": []
+    },
+    "activeTab": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "style": "file:./style-index.css"
+}
