@@ -1,48 +1,38 @@
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/tabs/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************/
-.guten-tab-wrapper .guten-tab-content .guten-tab-panel {
-  display: none;
-}
-.guten-tab-wrapper .guten-tab-content .guten-tab-panel.is-active {
-  display: block;
-}
-
-.guten-tab-wrapper.is-style-pills .guten-tabs-nav .guten-tab-item .guten-tab-link {
-  background-color: #94a3b8;
-  padding: 12px;
-  color: #fff;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.guten-tab-wrapper.is-style-pills .guten-tabs-nav .guten-tab-item .guten-tab-link.is-active {
-  background-color: #1d4ed8;
-}
-
-.guten-tabs-nav {
+.guten-tab-wrapper .guten-tabs-nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
-
-.guten-tabs-nav .guten-tab-item .guten-tab-link {
+.guten-tab-wrapper .guten-tabs-nav .guten-tab-item .guten-tab-link {
   padding: 12px;
   font-size: 14px;
   line-height: 20px;
 }
-
-.guten-tab-link.is-active {
+.guten-tab-wrapper .guten-tabs-nav .guten-tab-item .guten-tab-link.is-active {
   color: #1d4ed8;
   border-bottom: 2px solid #1d4ed8;
 }
-
-.guten-tab-link:hover {
+.guten-tab-wrapper .guten-tabs-nav .guten-tab-item .guten-tab-link:hover {
   color: #1d4ed8;
 }
-
-.guten-tab-panel {
+.guten-tab-wrapper .guten-tab-content .guten-tab-panel {
+  display: none;
   padding-top: 16px;
+}
+.guten-tab-wrapper .guten-tab-content .guten-tab-panel.is-active {
+  display: block;
+}
+.guten-tab-wrapper.is-style-pills .guten-tabs-nav .guten-tab-item .guten-tab-link {
+  background-color: #94a3b8;
+  color: #fff;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.guten-tab-wrapper.is-style-pills .guten-tabs-nav .guten-tab-item .guten-tab-link.is-active {
+  background-color: #1d4ed8;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

@@ -1,49 +1,59 @@
 
 .guten-tab-wrapper {
+
+	.guten-tabs-nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+
+		.guten-tab-item {
+
+			.guten-tab-link {
+				padding: 12px;
+				font-size: 14px;
+				line-height: 20px;
+
+				&.is-active {
+					color: #1d4ed8;
+					border-bottom: 2px solid #1d4ed8;
+				}
+
+				&:hover {
+					color: #1d4ed8;
+				}
+			}
+		}
+	}
+
 	.guten-tab-content {
+
 		.guten-tab-panel {
 			display: none;
+			padding-top: 16px;
 
 			&.is-active {
 				display: block;
-			 }
+			}
 		}
 	}
-}
 
-.guten-tab-wrapper.is-style-pills .guten-tabs-nav .guten-tab-item .guten-tab-link {
-	background-color: #94a3b8;
-	padding: 12px;
-	color: #fff;
-	border-radius: 4px;
-	margin-right: 10px;
-}
+	&.is-style-pills {
 
-.guten-tab-wrapper.is-style-pills .guten-tabs-nav .guten-tab-item .guten-tab-link.is-active {
-	background-color: #1d4ed8;
-}
+		.guten-tabs-nav {
 
-.guten-tabs-nav {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-}
+			.guten-tab-item {
 
-.guten-tabs-nav .guten-tab-item .guten-tab-link {
-	padding: 12px;
-	font-size: 14px;
-	line-height: 20px;
-}
+				.guten-tab-link {
+					background-color: #94a3b8;
+					color: #fff;
+					border-radius: 4px;
+					margin-right: 10px;
 
-.guten-tab-link.is-active {
-	color: #1d4ed8;
-	border-bottom: 2px solid #1d4ed8;
-}
-
-.guten-tab-link:hover {
-	color: #1d4ed8;
-}
-
-.guten-tab-panel {
-	padding-top: 16px;
+					&.is-active {
+						background-color: #1d4ed8;
+					}
+				}
+			}
+		}
+	}
 }

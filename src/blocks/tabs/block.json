@@ -1,37 +1,37 @@
 {
-  "$schema": "https://json.schemastore.org/block.json",
-  "apiVersion": 2,
-  "name": "ahsan03/tabs",
-  "version": "1.1.0",
-  "title": "Tabs",
-  "category": "design",
-  "description": "Tab Block",
-  "textdomain": "gtt",
-  "example": {
-	"attributes": {}
-  },
-  "attributes": {
-	"tabs": {
-	  "type": "array",
-	  "default": []
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "ahsan03/tabs",
+	"version": "1.1.0",
+	"title": "Tabs",
+	"category": "design",
+	"description": "Tab Block",
+	"textdomain": "gtt",
+	"example": {
+		"attributes": {}
 	},
-	"activeTab": {
-	  "type": "string"
-	}
-  },
-  "styles": [
-	{
-	  "name": "underline",
-	  "isDefault": true,
-	  "label": "Underline"
+	"attributes": {
+		"tabs": {
+			"type": "array",
+			"default": []
+		},
+		"activeTab": {
+			"type": "string"
+		}
 	},
-	{
-	  "name": "pills",
-	  "isDefault": false,
-	  "label": "Pills"
-	}
-  ],
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+	"styles": [
+		{
+			"name": "underline",
+			"isDefault": true,
+			"label": "Underline"
+		},
+		{
+			"name": "pills",
+			"isDefault": false,
+			"label": "Pills"
+		}
+	],
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
 }
