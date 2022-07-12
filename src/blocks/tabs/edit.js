@@ -1,26 +1,17 @@
-import {
-	Button,
-	PanelBody,
-	TextControl,
-	TextareaControl,
-	ColorPalette,
-	IconButton,
-} from '@wordpress/components';
-import {
-	InspectorControls,
-	useBlockProps,
-	InnerBlocks,
-	RichText,
-} from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
+import { useBlockProps, InnerBlocks, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { v4 as uuid } from 'uuid';
-// import TailwindTabs from './components/TailwindTabs';
 import { createBlock } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
+import './editor.scss';
 
 const Edit = ( { attributes, setAttributes, clientId } ) => {
 	const { tabs, activeTab } = attributes;
+
+	const blockProps = useBlockProps( {
+		className: `${ useBlockProps().className } guten-tab-wrapper`,
+	} );
 
 	const setActiveTab = ( uid ) => {
 		setAttributes( { activeTab: uid } );
@@ -34,37 +25,70 @@ const Edit = ( { attributes, setAttributes, clientId } ) => {
 				}
 			);
 		} );
+	};
 
-		dispatch( 'core/block-editor' ).selectBlock( uid );
+	const addNewTab = () => {
+		const tab = createBlock( 'ahsan03/tab' );
+		const position = tabs.length;
+		dispatch( 'core/block-editor' ).insertBlock( tab, position, clientId );
+		setAttributes( {
+			tabs: [
+				...tabs,
+				{
+					uid: tab.clientId,
+					title: `Tab ${ tabs.length + 1 }`,
+				},
+			],
+		} );
+		setActiveTab( tab.clientId );
+	};
+
+	const tabTitleChange = ( newValue ) => {
+		setAttributes( {
+			tabs: [
+				...tabs.map( ( t ) => {
+					return t.uid === activeTab
+						? {
+								...t,
+								title: newValue,
+						  }
+						: t;
+				} ),
+			],
+		} );
 	};
 
 	useEffect( () => {
 		if ( tabs.length && ! activeTab ) {
 			setActiveTab( tabs[ 0 ].uid );
 		}
-	}, [] );
+	}, [ tabs ] );
 
 	return (
 		<>
-			<div { ...useBlockProps() }>
-				<div className={ 'guten-tabs-nav flex flex-wrap' }>
+			<div { ...blockProps }>
+				<div className={ 'guten-tabs-nav' }>
 					{ tabs.map( ( tab ) => {
 						return (
 							<div
 								key={ tab.uid }
-								className={ 'guten-tab-item text-sm mr-6' }
+								className={ 'guten-tab-item' }
+								role="tab"
+								tabIndex="0"
+								onClick={ () => setActiveTab( tab.uid ) }
 							>
 								<div
-									className={ `cursor-pointer py-3 guten-tab-link${
+									className={ `guten-tab-link${
 										tab.uid === activeTab
 											? ' is-active'
 											: ''
 									}` }
-									role="tab"
-									tabIndex="0"
-									onClick={ () => setActiveTab( tab.uid ) }
 								>
-									<RichText value={ tab.title } />
+									<RichText
+										tagName="div"
+										value={ tab.title }
+										onChange={ tabTitleChange }
+									/>
 								</div>
 							</div>
 						);
@@ -72,32 +96,17 @@ const Edit = ( { attributes, setAttributes, clientId } ) => {
 					<Button
 						variant={ 'primary' }
 						icon={ 'plus' }
-						onClick={ () => {
-							const tab = createBlock( 'ahsan03/tab' );
-							const position = tabs.length;
-							dispatch( 'core/block-editor' ).insertBlock(
-								tab,
-								position,
-								clientId
-							);
-							setAttributes( {
-								tabs: [
-									...tabs,
-									{
-										uid: tab.clientId,
-										title: 'New Title',
-									},
-								],
-							} );
-						} }
+						onClick={ addNewTab }
 					>
 						{ __( 'Add Tab', 'gtt' ) }
 					</Button>
 				</div>
-				<InnerBlocks
-					allowedBlocks={ [ 'ahsan03/tab' ] }
-					renderAppender={ false }
-				/>
+				<div className={ 'guten-tab-content' }>
+					<InnerBlocks
+						allowedBlocks={ [ 'ahsan03/tab' ] }
+						renderAppender={ false }
+					/>
+				</div>
 			</div>
 		</>
 	);

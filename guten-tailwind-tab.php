@@ -46,6 +46,7 @@ final class Guten_Tailwind_Tab {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_block_types_init' ) );
 		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_frontend_scripts' ) );
 	}
 
 	/**
@@ -65,6 +66,10 @@ final class Guten_Tailwind_Tab {
 		if ( function_exists( 'wp_set_script_translations' ) ) {
 			wp_set_script_translations( 'guten-tailwind-tab', 'gtt', plugin_dir_path( __FILE__ ) . 'languages' );
 		}
+	}
+
+	public function add_frontend_scripts() {
+		wp_enqueue_script( 'guten-tab-frontend', plugin_dir_url( __FILE__ ) . 'src/blocks/frontend.js', array( 'jquery' ), '1.0', true );
 	}
 }
 

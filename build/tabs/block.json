@@ -19,7 +19,19 @@
       "type": "string"
     }
   },
+  "styles": [
+    {
+      "name": "underline",
+      "isDefault": true,
+      "label": "Underline"
+    },
+    {
+      "name": "pills",
+      "isDefault": false,
+      "label": "Pills"
+    }
+  ],
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./style-index.css",
+  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"
 }

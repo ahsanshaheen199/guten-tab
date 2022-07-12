@@ -1,9 +1,13 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
-const Save = () => {
+const Save = ( { attributes } ) => {
+	const { uid } = attributes;
+
 	return (
 		<div { ...useBlockProps.save() }>
-			<InnerBlocks.Content />
+			<div data-tab-id={ uid } className={ 'guten-tab-panel' }>
+				<InnerBlocks.Content />
+			</div>
 		</div>
 	);
 };

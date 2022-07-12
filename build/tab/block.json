@@ -21,7 +21,5 @@
       "type": "string"
     }
   },
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./style-index.css",
-  "style": "file:./style-index.css"
+  "editorScript": "file:./index.js"
 }

@@ -2,7 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import json from './block.json';
 import Edit from './edit';
 import Save from './save';
-import './style.css';
+import './style.scss';
 
 const { name, ...settings } = json;
 
