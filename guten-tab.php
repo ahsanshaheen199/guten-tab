@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:     Guten Tailwind Tab
- * Plugin URI:      https://github.com/ahsanshaheen199/guten-tailwind-tab
+ * Plugin Name:     Guten Tab
+ * Plugin URI:      https://github.com/ahsanshaheen199/guten-tab
  * Description:     This is a tab block plugin.
  * Author:          Ahsan Habib Shaheen
  * Author URI:      https://profiles.wordpress.org/ahsan03/
@@ -9,15 +9,15 @@
  * Domain Path:     /languages
  * Version:         1.1.0
  *
- * @package         Guten_Tailwind_Tab
+ * @package         Guten_Tab
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Guten Tailwind Tab Class.
+ * Guten Tab Class.
  */
-final class Guten_Tailwind_Tab {
+final class Guten_Tab {
 	/**
 	 * Plugin Version
 	 *
@@ -28,7 +28,7 @@ final class Guten_Tailwind_Tab {
 	/**
 	 * Initialize Guten_Tailwind_Tab class
 	 *
-	 * @return Guten_Tailwind_Tab
+	 * @return Guten_Tab
 	 */
 	public static function instance() {
 		static $instance = false;
@@ -64,7 +64,7 @@ final class Guten_Tailwind_Tab {
 		load_plugin_textdomain( 'gtt', false, basename( __DIR__ ) . '/languages' );
 
 		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( 'guten-tailwind-tab', 'gtt', plugin_dir_path( __FILE__ ) . 'languages' );
+			wp_set_script_translations( 'guten-tab', 'gtt', plugin_dir_path( __FILE__ ) . 'languages' );
 		}
 	}
 
@@ -73,9 +73,9 @@ final class Guten_Tailwind_Tab {
 	}
 }
 
-function guten_tailwind_tab()
+function guten_tab()
 {
-    return Guten_Tailwind_Tab::instance();
+    return Guten_Tab::instance();
 }
 
-guten_tailwind_tab();
+guten_tab();
