@@ -17,6 +17,13 @@
 		},
 		"uid": {
 			"type": "string"
+		},
+		"lock": {
+		  "type": "object",
+		  "default": {
+			"move": true,
+			"remove": true
+		  }
 		}
 	},
 	"editorScript": "file:./index.js"

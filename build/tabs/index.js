@@ -454,7 +454,7 @@ module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkguten_tailwind_tab"] = globalThis["webpackChunkguten_tailwind_tab"] || [];
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkguten_tab"] = globalThis["webpackChunkguten_tab"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
